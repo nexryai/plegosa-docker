@@ -1,9 +1,13 @@
 FROM chimeralinux/chimera as builder
 
 RUN apk --no-cache update && apk --no-cache upgrade
-RUN apk add git cargo
+RUN apk add git cargo shadow
 
 WORKDIR /var/build
+
+RUN useradd -u 586 builder && chown -R builder /var/build
+
+USER builder
 RUN git clone --depth 1 https://github.com/syobocat/plegosa.git
 RUN cd plegosa && cargo build --release
 
