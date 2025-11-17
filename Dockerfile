@@ -5,10 +5,8 @@ RUN apk add git cargo
 
 WORKDIR /var/build
 RUN git clone --depth 1 https://github.com/syobocat/plegosa.git
-RUN cd plegosa && cargo build --release && ls
+RUN cd plegosa && cargo build --release
 
-
-RUN ls /var/build/plegosa/target/release/plegosa
 
 FROM chimeralinux/chimera
 
